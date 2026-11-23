@@ -1,8 +1,12 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+    public event Action<int, int> Damaged;
+    public event Action<int, int> Restored;
+
     [SerializeField] int max = 3;
     [SerializeField] float iFrames = 1f;
     [SerializeField] private MeshRenderer meshRenderer;
@@ -86,7 +90,7 @@ public class Health : MonoBehaviour
             return false;
         }
 
-        _current -= amount;
+        _current = Mathf.Max(_current - amount, 0);
 
         if (meshRenderer != null && _material != null)
         {
@@ -94,7 +98,8 @@ public class Health : MonoBehaviour
             _flashRoutine = StartCoroutine(WhiteBlinkEffect());
         }
 
-        GameManager.Instance.UpdateUI();
+        Damaged?.Invoke(_current, max);
+
         if (_current <= 0) GameManager.Instance.PlayerDied();
 
         return true;
@@ -106,14 +111,10 @@ public class Health : MonoBehaviour
         _invulnerableUntil = Time.time + protection;
 
         if (_flashRoutine != null) StopCoroutine(_flashRoutine);
+        if (meshRenderer != null) meshRenderer.enabled = true;
+        if (_material != null) _material.color = _originalColor;
 
-        if (meshRenderer != null)
-            meshRenderer.enabled = true;
-
-        if (_material != null)
-            _material.color = _originalColor;
-
-        GameManager.Instance.UpdateUI();
+        Restored?.Invoke(_current, max);
     }
 
     private IEnumerator WhiteBlinkEffect()
