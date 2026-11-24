@@ -17,9 +17,9 @@
 | A | `#141829` on `#62E04C` | 10.30: 1 | Exceeds WCAG 4.5:1 for readable dark labels on bright green menu buttons |
 | B | Music & SFX groups, as mixed | Music -6 dB, SFX 0 dB | Keeps SFX audible over background music without clipping |
 | B | Slider at 1, 0.5, 0.0001 | 0 dB, -6 dB, -80 dB | Logarithmic conversion (`Log10(v) * 20`) matches human hearing |
-| C | [Sound 1], in [Level n] | [rolloff] · Min [m] · Max [m] | |
-| C | [Sound 2], in [Level n] | [rolloff] · Min [m] · Max [m] | |
-| C | AudioListener | [on the camera, or on the player] | |
+| C | Patrolling AI Hum, in Level 2 | Linear, Min 2 m, Max 16 m | Linear rolloff fades the hum to complete silence once the ball leaves the patrol zone |
+| C | Crusher Machinery, in Level 3 | Logarithmic, Min 3 m, Max 30 m | Logarithmic rolloff (-6 dB per doubling) lets the player hear the crusher faintly from afar |
+| C | AudioListener | On the player (`ListenerOnPlayer.cs`) | Follow camera sits several metres back, so placing the listener at the ball's position with camera rotation keeps 3D distance and stereo accurate |
 | D | [unlocked] | int · default [1] | |
 | D | [best1] ... [best5] | float · [HasKey first] | |
 | D | [MusicVolume] | float · default [1] | |

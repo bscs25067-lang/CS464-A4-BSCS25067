@@ -10,6 +10,9 @@ public class Hazard : MonoBehaviour
     [SerializeField] GameObject active;
     [SerializeField] private ParticleSystem fx;
 
+    [SerializeField] private AudioClip clip;
+    [SerializeField] private AudioSource source;
+
     [Header("Stomp Animation Settings")]
     [SerializeField] private Transform stomper;
     [SerializeField] private float dropDistance = 4f;
@@ -50,7 +53,7 @@ public class Hazard : MonoBehaviour
 
             if (restTime > 0f)
             {
-                StartCoroutine(MoveStomper(_slammedLocalPos, _startLocalPos, recoverTime, false));
+                StartCoroutine(MoveStomper(_slammedLocalPos, _startLocalPos, recoverTime, useStompEase:false));
                 yield return new WaitForSeconds(restTime);
             }
             else
@@ -84,7 +87,11 @@ public class Hazard : MonoBehaviour
             yield return null;
         }
 
-        if(play) fx.Play();
+        if(play)
+        {
+            fx.Play();
+            source.PlayOneShot(clip);
+        }
         stomper.localPosition = to;
     }
 
