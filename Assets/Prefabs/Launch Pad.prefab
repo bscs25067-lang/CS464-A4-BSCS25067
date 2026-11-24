@@ -312,12 +312,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 005ee240ccddd17429c2a8245c92fd0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LaunchPad
+  sfxClip: {fileID: 8300000, guid: 954acc227e1a648449c22f817be99f37, type: 3}
   launchForce: 12
   launchDirection: {x: 0, y: 1, z: 0}
   targetTag: Player
   springCylinder: {fileID: 7016320309055705749}
   padSurface: {fileID: 2585464716687621365}
   springTopTarget: {fileID: 1826026250050077727}
-  compressedScaleY: 0.1
-  compressSpeed: 25
-  expandSpeed: 12
+  squashScaleY: 0.2
+  squashDuration: 0.05
+  stretchScaleY: 2.5
+  stretchDuration: 0.15
+  settleDuration: 0.7
+  wobbles: 3

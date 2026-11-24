@@ -4,6 +4,8 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class LaunchPad : MonoBehaviour
 {
+    [SerializeField] private AudioClip sfxClip;
+
     [Header("Launch Settings")]
     public float launchForce = 20f;
     public Vector3 launchDirection = Vector3.up;
@@ -57,6 +59,7 @@ public class LaunchPad : MonoBehaviour
 
             Vector3 launchVector = transform.TransformDirection(launchDirection.normalized) * launchForce;
             rb.AddForce(launchVector, ForceMode.Impulse);
+            SfxPlayer.Instance.Play(sfxClip);
 
             // Trigger Cartoon Animation
             if (springCylinder != null)

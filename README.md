@@ -15,8 +15,8 @@
 | A | Accents | `#C92A38` `#62E04C` | Crimson flags spikes, crushers, and patrolling AI; green highlights jump pads, pickups, and health |
 | A | `#F4F6FC` on `#141829` | 16.30: 1 | Exceeds WCAG 4.5:1 for crisp HUD score and lives text on solid panels |
 | A | `#141829` on `#62E04C` | 10.30: 1 | Exceeds WCAG 4.5:1 for readable dark labels on bright green menu buttons |
-| B | Music · SFX groups, as mixed | [dB] · [dB] | |
-| B | Slider at 1 · 0.5 · 0.0001 | [dB] · [dB] · [dB] | |
+| B | Music & SFX groups, as mixed | Music -6 dB, SFX 0 dB | Keeps SFX audible over background music without clipping |
+| B | Slider at 1, 0.5, 0.0001 | 0 dB, -6 dB, -80 dB | Logarithmic conversion (`Log10(v) * 20`) matches human hearing |
 | C | [Sound 1], in [Level n] | [rolloff] · Min [m] · Max [m] | |
 | C | [Sound 2], in [Level n] | [rolloff] · Min [m] · Max [m] | |
 | C | AudioListener | [on the camera, or on the player] | |

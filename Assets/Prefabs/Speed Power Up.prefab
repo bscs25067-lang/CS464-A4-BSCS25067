@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PowerUp
   type: 0
-  multiplier: 1.6
+  sfxClip: {fileID: 8300000, guid: 3209b7a2d1ce8454ba7c19c902db3cdd, type: 3}
   duration: 5
 --- !u!135 &8824287331368320948
 SphereCollider:
