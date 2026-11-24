@@ -20,9 +20,9 @@
 | C | Patrolling AI Hum, in Level 2 | Linear, Min 2 m, Max 16 m | Linear rolloff fades the hum to complete silence once the ball leaves the patrol zone |
 | C | Crusher Machinery, in Level 3 | Logarithmic, Min 3 m, Max 30 m | Logarithmic rolloff (-6 dB per doubling) lets the player hear the crusher faintly from afar |
 | C | AudioListener | On the player (`ListenerOnPlayer.cs`) | Follow camera sits several metres back, so placing the listener at the ball's position with camera rotation keeps 3D distance and stereo accurate |
-| D | [unlocked] | int · default [1] | |
-| D | [best1] ... [best5] | float · [HasKey first] | |
-| D | [MusicVolume] | float · default [1] | |
+| D | `unlocked` | int, default 1 | Ensures Level 1 is playable on a fresh install or after clearing PlayerPrefs |
+| D | `best1`–`best5` | float, `HasKey` first | Prevents displaying `0.00s` as a fake best time for unplayed levels |
+| D | `MusicVolume` | float, default 1 | Starts music at full slider volume (0 dB) until the player adjusts it |
 ## Answers
 1. **What `Time.timeScale = 0` stops in my game, and what it doesn't:** [answer]
 2. **What survives a LoadScene in my game, and how:** [answer]

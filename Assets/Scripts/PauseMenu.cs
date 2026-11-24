@@ -8,6 +8,7 @@ public class PauseMenu : MonoBehaviour
 
 	[SerializeField] private GameObject pausePanel;
 	[SerializeField] private GameObject firstSelectedButton;
+	[SerializeField] private LevelLoader loader;
 
 	void Update()
 	{
@@ -40,17 +41,6 @@ public class PauseMenu : MonoBehaviour
 		pausePanel.SetActive(false);
 	}
 
-	public void Restart()
-	{
-		Resume();
-		// In Part D, replace this line with: LevelLoader.Instance.Reload();
-		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-	}
-
-	public void QuitToMenu()
-	{
-		Resume();
-		// In Part D, replace this line with: LevelLoader.Instance.LoadMenu();
-		SceneManager.LoadScene(0);
-	}
+    public void Restart() { Resume(); loader.Reload(); }
+    public void QuitToMenu() { Resume(); loader.LoadMenu(); }
 }

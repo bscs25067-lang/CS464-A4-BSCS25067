@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] TMP_Text scoreText, livesText;
     [SerializeField] GameObject winPanel, losePanel;
     [SerializeField] GameObject winFirstButton, loseFirstButton;
+    [SerializeField] private LevelLoader loader;
+    [SerializeField] private TextMeshProUGUI winTimeText;
 
     int score;
 
@@ -61,9 +63,13 @@ public class GameManager : MonoBehaviour
     void Win()
     {
         IsGameEnded = true;
-        winPanel.SetActive(true);
-        Time.timeScale = 0f;
-        SelectButton(winFirstButton);
+        int level = gameObject.scene.buildIndex;
+        float time = Time.timeSinceLevelLoad;
+
+        bool isNewBest = SaveData.Record(level, time);
+        SaveData.Unlock(level + 1);
+
+        ShowWinScreen(time, isNewBest);
     }
 
     void Lose()
@@ -80,19 +86,17 @@ public class GameManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(button);
     }
 
-    public void Restart()
+    private void ShowWinScreen(float time, bool isNewBest)
     {
-        Time.timeScale = 1f;
-        AudioListener.pause = false;
-        // In Part D, replace with LevelLoader.Instance.Reload();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        if (winTimeText != null)
+            winTimeText.text = isNewBest ? $"Time: {time:F2}s (New Best!)" : $"Time: {time:F2}s";
+
+        winPanel.SetActive(true);
+        Time.timeScale = 0f;
+        SelectButton(winFirstButton);
     }
 
-    public void QuitToMenu()
-    {
-        Time.timeScale = 1f;
-        AudioListener.pause = false;
-        // In Part D, replace with LevelLoader.Instance.LoadMenu();
-        SceneManager.LoadScene(0);
-    }
+    public void NextLevel() { Time.timeScale = 1f; AudioListener.pause = false; loader.LoadNext(); }
+    public void Restart() { Time.timeScale = 1f; AudioListener.pause = false; loader.Reload(); }
+    public void QuitToMenu() { Time.timeScale = 1f; AudioListener.pause = false; loader.LoadMenu(); }
 }
