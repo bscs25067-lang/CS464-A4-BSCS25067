@@ -159,6 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf85678c64a716a4a849b14f5c5155ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Coin
+  sfxClip: {fileID: 8300000, guid: 6b1b528d8179ce1418e7e7d37ae0b683, type: 3}
   value: 1
   rotSpeed: 70
   popDuration: 0.35

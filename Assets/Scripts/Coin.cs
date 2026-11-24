@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
+    [SerializeField] private AudioClip sfxClip;
     [SerializeField] private int value = 1;
     [SerializeField] private float rotSpeed = 2;
 
@@ -67,6 +68,8 @@ public class Coin : MonoBehaviour
         if (!other.CompareTag("Player")) return;
 
         GameManager.Instance.AddScore(value);
+        SfxPlayer.Instance.Play(sfxClip);
+
         Destroy(gameObject);
     }
 }
